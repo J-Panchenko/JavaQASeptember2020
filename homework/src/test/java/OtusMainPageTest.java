@@ -1,9 +1,7 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -17,8 +15,8 @@ public class OtusMainPageTest {
 
     @BeforeClass
     public void openBrowser() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        String browserName = System.getProperty("browser");
+        driver = WebDriverFactory.createWebDriver(browserName);
         logger.info("The Chrome browser opened");
     }
 
